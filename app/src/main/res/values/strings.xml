@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AlcoolOuGasolina</string>
+
+    <string name="moeda">R&#36; %s</string>
+</resources>
