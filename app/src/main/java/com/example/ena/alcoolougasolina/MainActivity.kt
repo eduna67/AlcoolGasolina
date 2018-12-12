@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val MAX_LENGTH = 4
     private val MAX_DECIMAL = 3
 
-    //lateinit var preferencias : MinhaPreferencia
+    lateinit var preferenciasteste : MinhaPreferencia
     var preferencias : MinhaPreferencia? = null
 
     //var preferencias = MinhaPreferencia(baseContext)
