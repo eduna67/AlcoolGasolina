@@ -1,20 +1,17 @@
 package com.example.ena.alcoolougasolina
 
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-
 import kotlinx.android.synthetic.main.activity_main.*
 import java.math.BigDecimal
-import java.text.DecimalFormat
 import java.math.RoundingMode
+import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.*
 
@@ -25,7 +22,10 @@ class MainActivity : AppCompatActivity() {
     private val MAX_LENGTH = 4
     private val MAX_DECIMAL = 3
 
-    val preferencias = MinhaPreferencia(baseContext)
+    //lateinit var preferencias : MinhaPreferencia
+    var preferencias : MinhaPreferencia? = null
+
+    //var preferencias = MinhaPreferencia(baseContext)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +33,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         var previousCleanString = ""
 
-        if (!preferencias.getGasolinaMediaKm().toString().trim().isEmpty())
-            mediaGasolina.setText(preferencias.getGasolinaMediaKm().toString().replace(".", ","))
+        //preferenciasTeste = MinhaPreferencia(this.baseContext)
+        //mediaGasolina.setText(preferenciasTeste!!.getGasolinaMediaKm().toString().replace(".", ","))
 
-        if (!preferencias.getAlcoolMediaKm().toString().trim().isEmpty())
-            mediaAlcool.setText(preferencias.getAlcoolMediaKm().toString().replace(".", ","))
+        preferencias = MinhaPreferencia(baseContext)
 
-        if (!preferencias.getGasoinaValorLitro().toString().trim().isEmpty())
-            valorLitroGasolina.setText(getString(R.string.moeda, preferencias.getGasoinaValorLitro().toString().replace(".", ",")))
+        if (!preferencias!!.getGasolinaMediaKm().toString().trim().isEmpty())
+            mediaGasolina.setText(preferencias!!.getGasolinaMediaKm().toString().replace(".", ","))
 
-        if (!preferencias.getAlcoolValorLitro().toString().trim().isEmpty())
-            valorLitroAlcool.setText(getString(R.string.moeda, preferencias.getAlcoolValorLitro().toString().replace(".", ",")))
+        if (!preferencias!!.getAlcoolMediaKm().toString().trim().isEmpty())
+            mediaAlcool.setText(preferencias!!.getAlcoolMediaKm().toString().replace(".", ","))
+
+        if (!preferencias!!.getGasoinaValorLitro().toString().trim().isEmpty())
+            valorLitroGasolina.setText(getString(R.string.moeda, preferencias!!.getGasoinaValorLitro().toString().replace(".", ",")))
+
+        if (!preferencias!!.getAlcoolValorLitro().toString().trim().isEmpty())
+            valorLitroAlcool.setText(getString(R.string.moeda, preferencias!!.getAlcoolValorLitro().toString().replace(".", ",")))
 
         mediaGasolina.setSelection(mediaGasolina.text.length)
         mediaAlcool.setSelection(mediaAlcool.text.length)
@@ -156,11 +161,11 @@ class MainActivity : AppCompatActivity() {
         else
             txtSaida.setText("Use Gasolina") // consumoMedioAlcool.text.toString())
 
-        preferencias.setGasolinaMediaKM(mediaGasolina.text.toString().replace(",", ".").toFloat())
-        preferencias.setAlcoolMediaKM(mediaAlcool.text.toString().replace(",", ".").toFloat())
+        preferencias!!.setGasolinaMediaKM(mediaGasolina.text.toString().replace(",", ".").toFloat())
+        preferencias!!.setAlcoolMediaKM(mediaAlcool.text.toString().replace(",", ".").toFloat())
 
-        preferencias.setGasolinaValorLitro(valorLitroGasolina.text.toString().replace(",", ".").toFloat())
-        preferencias.setAlcoolValorLitro(valorLitroAlcool.text.toString().replace(",", ".").toFloat())
+        preferencias!!.setGasolinaValorLitro(valorLitroGasolina.text.toString().replace(",", ".").toFloat())
+        preferencias!!.setAlcoolValorLitro(valorLitroAlcool.text.toString().replace(",", ".").toFloat())
 
         Log.i("BOTAO", "Clicou no botão")
 
