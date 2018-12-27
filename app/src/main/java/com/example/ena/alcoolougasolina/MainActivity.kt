@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val prefix = "R$ "
 
-    private val MAX_LENGTH = 4
+    private val MAX_LENGTH = 5
     private val MAX_DECIMAL = 3
 
     lateinit var preferenciasteste : MinhaPreferencia
@@ -155,8 +155,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun calcular() {
-        if ((mediaAlcool.text.toString().replace(",", ".").toDouble() / mediaGasolina.text.toString().replace(",", ".").toDouble())
-                * valorLitroGasolina.text.toString().replace(",", ".").toDouble() > valorLitroAlcool.text.toString().replace(",", ".").toDouble())
+        if ((mediaAlcool.text.toString().replace(prefix, "").replace(",", ".").toDouble() / mediaGasolina.text.toString().replace(prefix, "").replace(",", ".").toDouble())
+                * valorLitroGasolina.text.toString().replace(prefix, "").replace(",", ".").toDouble() > valorLitroAlcool.text.toString().replace(prefix, "").replace(",", ".").toDouble())
             txtSaida.setText("Use Alcool") // consumoMedioAlcool.text.toString())
         else
             txtSaida.setText("Use Gasolina") // consumoMedioAlcool.text.toString())
@@ -164,8 +164,8 @@ class MainActivity : AppCompatActivity() {
         preferencias!!.setGasolinaMediaKM(mediaGasolina.text.toString().replace(",", ".").toFloat())
         preferencias!!.setAlcoolMediaKM(mediaAlcool.text.toString().replace(",", ".").toFloat())
 
-        preferencias!!.setGasolinaValorLitro(valorLitroGasolina.text.toString().replace(",", ".").toFloat())
-        preferencias!!.setAlcoolValorLitro(valorLitroAlcool.text.toString().replace(",", ".").toFloat())
+        preferencias!!.setGasolinaValorLitro(valorLitroGasolina.text.toString().replace(prefix, "").replace(",", ".").toFloat())
+        preferencias!!.setAlcoolValorLitro(valorLitroAlcool.text.toString().replace(prefix, "").replace(",", ".").toFloat())
 
         Log.i("BOTAO", "Clicou no botão")
 
