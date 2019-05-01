@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        valorLitroAlcool.setOnEditorActionListener { v, actionId, event ->
+        valorLitroAlcool.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 calcular()
                 methodManager.hideSoftInputFromWindow(valorLitroAlcool.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS)
